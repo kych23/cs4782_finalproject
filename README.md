@@ -1,6 +1,6 @@
 # CS 4782 Final Project: LoRA: Low-Rank Adaptation of Large Language Models Re-Implementation
 
-> [!Note(Temporary)]
+> [!Note]
 > 2-page report summary: https://docs.google.com/document/d/1KpMVNg_HShuOFuITlZTrP5CjQd3VAM5w01bWWs8ZUYg/edit?usp=sharing
 
 ## 1) Introduction
