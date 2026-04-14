@@ -1,3 +1,7 @@
+### Paper
+
+https://arxiv.org/abs/2106.09685
+
 ### 2-page report summary
 
 https://docs.google.com/document/d/1KpMVNg_HShuOFuITlZTrP5CjQd3VAM5w01bWWs8ZUYg/edit?usp=sharing
@@ -8,7 +12,7 @@ https://docs.google.com/document/d/1KpMVNg_HShuOFuITlZTrP5CjQd3VAM5w01bWWs8ZUYg/
 
 - The LoRA module must be coded from scratch — you cannot call HuggingFace's PEFT/LoRA library or any existing LoRA implementation. This was explicitly cited as a bad example by staff.
 - You should reproduce the paper from scratch mostly. Using an existing GitHub repo as your base is discouraged unless you get explicit instructor/TA sign-off first.
-- You are implementing the *core feature* of the paper, which for LoRA means the low-rank decomposition and its injection into attention layers — that is the non-negotiable from-scratch component.
+- You are implementing the _core feature_ of the paper, which for LoRA means the low-rank decomposition and its injection into attention layers — that is the non-negotiable from-scratch component.
 
 #### What you are allowed to use
 
