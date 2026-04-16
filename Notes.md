@@ -41,6 +41,12 @@ https://docs.google.com/document/d/1qfKQviobjutXVH3Scg7LJzD9_0iAjYfAdWCnrzCRPuo/
 
 RTE --> SST-2 --> QNLI
 
+### Extra
+
+- Our results for RTE are not as high as the paper because the paper pre-trained on MNLI benchmark first.
+  - "Following Liu et al. (2019), we initialize the LoRA modules to our best MNLI checkpoint when adapting to MRPC, RTE, and STS-B, instead of the usual initialization"
+  - We started pre-training from random Gaussian initialization
+
 Context
 
      Re-implement LoRA (Low-Rank Adaptation, arxiv 2106.09685) from scratch using PyTorch + HuggingFace RoBERTa-base. Compare LoRA against full fine-tuning on SST-2, QNLI, and RTE (GLUE). No PEFT/LoRA libraries allowed. Code goes in an empty code/ directory.

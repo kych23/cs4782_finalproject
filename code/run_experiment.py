@@ -34,7 +34,7 @@ def parse_args():
     parser.add_argument("--rank",   type=int, default=8,
                         help="LoRA rank r (ignored for --mode full)")
     parser.add_argument("--alpha", type=float, default=None,
-                        help="LoRA alpha (default: 2 * rank)")
+                        help="LoRA alpha (default: 8, matching paper)")
     parser.add_argument("--seed",   type=int, default=42)
     parser.add_argument("--output_dir", type=str, default=None,
                         help="Directory for results.json and best_model.pt. "

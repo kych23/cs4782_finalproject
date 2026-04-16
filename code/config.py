@@ -24,7 +24,7 @@ TASK_CONFIGS = {
         num_epochs=60,
         batch_size=16,
         lora_lr=5e-4,
-        full_ft_lr=5e-4,
+        full_ft_lr=2e-5,
     ),
     "qnli": TaskConfig(
         task_name="qnli",
@@ -34,8 +34,15 @@ TASK_CONFIGS = {
         num_epochs=25,
         batch_size=32,
         lora_lr=4e-4,
-        full_ft_lr=4e-4,
+        full_ft_lr=2e-5,
     ),
+    # NOTE: Our RTE results will be slightly below the paper's reported 86.6%.
+    # Section D.1 states: "we initialize the LoRA modules to our best MNLI checkpoint
+    # when adapting to MRPC, RTE, and STS-B, instead of the usual initialization."
+    # The paper first trains LoRA on MNLI, then uses those trained A/B matrices as the
+    # starting point for RTE fine-tuning. We initialize from scratch (A~N(0,1), B=0)
+    # for simplicity. This warm-start from MNLI is the primary reason for any gap
+    # between our RTE accuracy and the paper's number.
     "rte": TaskConfig(
         task_name="rte",
         num_labels=2,
@@ -44,6 +51,6 @@ TASK_CONFIGS = {
         num_epochs=80,
         batch_size=32,
         lora_lr=5e-4,
-        full_ft_lr=5e-4,
+        full_ft_lr=2e-5,
     ),
 }

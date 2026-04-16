@@ -50,7 +50,7 @@ def main():
     _, val_loader = get_dataloaders(task_config, tokenizer, task_config.batch_size)
 
     if args.mode == "lora":
-        alpha = args.alpha if args.alpha is not None else 2 * args.rank
+        alpha = args.alpha if args.alpha is not None else 8  # paper uses α=8
         model = build_lora_model(task_config, rank=args.rank, alpha=alpha)
     else:
         model = build_full_finetune_model(task_config)
