@@ -41,8 +41,8 @@ To reproduce our re-implementation locally:
 Example command flow (update with your final scripts):
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
+python -m venv venv
+source venv/bin/activate
 pip install -r code/requirements.txt
 python code/train.py --config code/configs/lora.yaml
 python code/eval.py --checkpoint results/checkpoints/best.pt

@@ -1,4 +1,4 @@
-"""Utility functions for reproducibility and calculating parameter/runtime metrics"""
+"""Utility functions for reproducibility and calculating parameter/runtime metrics."""
 
 import random
 import time
@@ -38,14 +38,20 @@ class EpochTimer:
 
 
 class PeakMemoryTracker:
-    """Records peak memory usage for a given epoch in megabytes"""
+    """Records peak memory usage for a given epoch in megabytes."""
+
     def __enter__(self):
+        self.peak_memory_mb = 0.0
         if torch.cuda.is_available():
             torch.cuda.reset_peak_memory_stats()
+        elif torch.backends.mps.is_available():
+            self.peak_memory_mb = 0.0
         return self
 
     def __exit__(self, *args):
         if torch.cuda.is_available():
-            self.peak_mb = torch.cuda.max_memory_allocated() / 1024 ** 2
+            self.peak_memory_mb = torch.cuda.max_memory_allocated() / 1024 ** 2
+        elif torch.backends.mps.is_available():
+            self.peak_memory_mb = torch.mps.current_allocated_memory() / 1024 ** 2
         else:
-            self.peak_mb = 0.0
+            self.peak_memory_mb = 0.0
