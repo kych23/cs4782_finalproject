@@ -69,7 +69,7 @@ def main():
     tokenizer = RobertaTokenizer.from_pretrained("roberta-base")
 
     if args.mode == "lora":
-        alpha = args.alpha if args.alpha is not None else 2 * args.rank
+        alpha = args.alpha if args.alpha is not None else 8  # paper uses α=8
         model = build_lora_model(task_config, rank=args.rank, alpha=alpha)
         if args.verify:
             verify_lora_model(model, rank=args.rank, device=device)
@@ -100,7 +100,7 @@ def main():
         "task": args.task,
         "mode": args.mode,
         "rank": args.rank if args.mode == "lora" else None,
-        "alpha": (args.alpha if args.alpha is not None else 2 * args.rank)
+        "alpha": (args.alpha if args.alpha is not None else 8)
                  if args.mode == "lora" else None,
         "seed": args.seed,
         "trainable_params": trainable,

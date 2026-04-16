@@ -1,3 +1,5 @@
+import math
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -38,7 +40,7 @@ class LoRALinear(nn.Module):
 
         self.A = nn.Parameter(torch.empty(rank, in_features))
         self.B = nn.Parameter(torch.zeros(out_features, rank))
-        nn.init.normal_(self.A)
+        nn.init.kaiming_uniform_(self.A, a=math.sqrt(5))  # matches nn.Linear default; keeps init magnitude small
 
         self.rank = rank
         self.alpha = alpha
