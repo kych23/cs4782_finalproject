@@ -38,20 +38,34 @@ class EpochTimer:
 
 
 class PeakMemoryTracker:
-    """Records peak memory usage for a given epoch in megabytes."""
+    """Records peak memory usage in megabytes.
+
+    Uses torch.cuda.max_memory_allocated() when available. Falls back to
+    nvidia-smi if the CUDA counter returns 0 (common on T4 High-RAM in Colab
+    due to unified memory), and to MPS on Apple Silicon.
+    """
 
     def __enter__(self):
         self.peak_memory_mb = 0.0
         if torch.cuda.is_available():
             torch.cuda.reset_peak_memory_stats()
-        elif torch.backends.mps.is_available():
-            self.peak_memory_mb = 0.0
         return self
 
     def __exit__(self, *args):
         if torch.cuda.is_available():
             self.peak_memory_mb = torch.cuda.max_memory_allocated() / 1024 ** 2
+            if self.peak_memory_mb == 0.0:
+                # Fallback: query nvidia-smi (handles T4 High-RAM unified memory)
+                try:
+                    import subprocess
+                    smi = subprocess.run(
+                        ["nvidia-smi", "--query-gpu=memory.used",
+                         "--format=csv,noheader,nounits"],
+                        capture_output=True, text=True, timeout=5
+                    )
+                    if smi.returncode == 0:
+                        self.peak_memory_mb = float(smi.stdout.strip().split("\n")[0])
+                except Exception:
+                    pass
         elif torch.backends.mps.is_available():
             self.peak_memory_mb = torch.mps.current_allocated_memory() / 1024 ** 2
-        else:
-            self.peak_memory_mb = 0.0
