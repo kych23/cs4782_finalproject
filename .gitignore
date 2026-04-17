@@ -22,3 +22,6 @@ __pycache__/
 .DS_Store
 .idea/
 .vscode/
+
+results/**/*.pt                                                                                                                                                                                                                                                                                                                  
+results/**/*.pth      
