@@ -22,7 +22,3 @@ __pycache__/
 .DS_Store
 .idea/
 .vscode/
-
-# Local experiment outputs
-results/**/best_model.pt
-results/**/results.json
