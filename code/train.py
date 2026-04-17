@@ -2,6 +2,7 @@
 
 import json
 import os
+import subprocess
 
 import torch
 import torch.nn as nn
@@ -122,10 +123,24 @@ def train(
                 best_epoch = epoch
                 torch.save(model.state_dict(), os.path.join(output_dir, "best_model.pt"))
 
+    # Query nvidia-smi for peak GPU memory (works on T4 and other GPUs where
+    # torch.cuda.max_memory_allocated() returns 0 due to unified memory)
+    gpu_memory_used_mb = 0
+    try:
+        smi = subprocess.run(
+            ["nvidia-smi", "--query-gpu=memory.used", "--format=csv,noheader,nounits"],
+            capture_output=True, text=True, timeout=5
+        )
+        if smi.returncode == 0:
+            gpu_memory_used_mb = int(smi.stdout.strip().split("\n")[0])
+    except Exception:
+        pass
+
     results = {
         "best_val_acc": round(best_val_acc, 4),
         "best_epoch": best_epoch,
         "peak_memory_mb": round(mem.peak_memory_mb, 1),
+        "gpu_memory_used_mb": gpu_memory_used_mb,
         "epoch_logs": epoch_logs,
     }
 

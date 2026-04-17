@@ -22,6 +22,7 @@ def main():
     for path in paths:
         with open(path) as f:
             d = json.load(f)
+        gpu_mb = d.get("gpu_memory_used_mb") or d.get("peak_memory_mb", 0)
         rows.append({
             "task":       d.get("task", "?"),
             "mode":       d.get("mode", "?"),
@@ -30,7 +31,7 @@ def main():
             "trainable":  f"{d.get('trainable_params', 0):,}",
             "total":      f"{d.get('total_params', 0):,}",
             "time_ep":    f"{sum(e['epoch_time_sec'] for e in d.get('epoch_logs', [])) / max(len(d.get('epoch_logs', [1])), 1):.1f}s",
-            "peak_gpu":   f"{d.get('peak_gpu_mb', 0):.0f} MB",
+            "peak_gpu":   f"{gpu_mb} MB",
         })
 
     # Sort: task, then full before lora, then rank ascending
