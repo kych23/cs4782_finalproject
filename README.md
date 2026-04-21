@@ -41,15 +41,20 @@ python code/run_experiment.py --task rte --mode full --seed 42
 - `--rank` (optional, default `8`): LoRA rank `r` (ignored when `--mode full`)
 - `--alpha` (optional, default `8` for LoRA): LoRA scaling alpha
 - `--seed` (optional, default `42`): random seed for reproducibility
-- `--output_dir` (optional): output directory for `results.json`  
-  - default for LoRA: `results/{task}_lora_r{rank}`  
+- `--output_dir` (optional): output directory for `results.json`
+  - default for LoRA: `results/{task}_lora_r{rank}`
   - default for full fine-tuning: `results/{task}_full`
 - `--verify` (optional flag): run LoRA sanity checks before training
 
 ## 6) Results / Insights
 
-LoRA (r=8) matches full fine-tuning within ~1% accuracy on SST-2 and QNLI while training under 1% of total model parameters.  
-Full per-epoch logs and comparisons to paper numbers are in `results/` and `report/`.
+Our RoBERTa-base results on the three reproduced tasks are:
+
+- **SST-2**: LoRA `94.38` vs paper LoRA `95.1`; Full FT `93.69` vs paper Full FT `94.8`
+- **QNLI**: LoRA `92.81` vs paper LoRA `93.3`; Full FT `92.90` vs paper Full FT `92.8`
+- **RTE**: LoRA `80.14` vs paper LoRA `86.6`; Full FT `79.42` vs paper Full FT `78.7`
+
+LoRA remains much more parameter-efficient in our runs: `887,042` trainable parameters vs `124,647,170` for full fine-tuning (~`0.71%` as many trainable parameters).
 
 ## 7) Conclusion
 
