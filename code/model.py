@@ -45,14 +45,12 @@ def verify_lora_model(model: nn.Module, rank: int, device: torch.device) -> None
     2. After a backward pass, only LoRA / classifier params have gradients
     3. LoRA model output equals pretrained output at init (because B=0)
     """
-    # Check 1: trainable parameter whitelist
     for name, param in model.named_parameters():
         if param.requires_grad:
             assert name.endswith(".A") or name.endswith(".B") or "classifier" in name, (
                 f"Unexpected trainable param: {name}"
             )
 
-    # Check 2: gradient check after a synthetic forward+backward
     model.to(device)
     model.train()
     dummy_input = {

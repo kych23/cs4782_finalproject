@@ -120,7 +120,6 @@ def train(
             if val_acc > best_val_acc:
                 best_val_acc = val_acc
                 best_epoch = epoch
-                torch.save(model.state_dict(), os.path.join(output_dir, "best_model.pt"))
 
     results = {
         "best_val_acc": round(best_val_acc, 4),

@@ -1,5 +1,5 @@
 """
-Single-run entry point.
+Script to run the full training loop of a single GLUE task
 
 Example usage:
     # LoRA run on SST-2 with rank 8
@@ -17,7 +17,6 @@ import sys
 import torch
 from transformers import RobertaTokenizer
 
-# Allow imports from code/ when called from the repo root
 sys.path.insert(0, os.path.dirname(__file__))
 
 from config import TASK_CONFIGS
@@ -37,7 +36,7 @@ def parse_args():
                         help="LoRA alpha (default: 8, matching paper)")
     parser.add_argument("--seed",   type=int, default=42)
     parser.add_argument("--output_dir", type=str, default=None,
-                        help="Directory for results.json and best_model.pt. "
+                        help="Directory for results.json. "
                              "Defaults to results/{task}_{mode}_r{rank}/")
     parser.add_argument("--verify", action="store_true",
                         help="Run LoRA sanity checks before training")
@@ -95,7 +94,6 @@ def main():
         output_dir=args.output_dir,
     )
 
-    # Augment results with run metadata and save
     metadata = {
         "task": args.task,
         "mode": args.mode,

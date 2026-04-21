@@ -42,7 +42,7 @@ class LoRALinear(nn.Module):
         self.B = nn.Parameter(torch.zeros(out_features, rank))
         nn.init.kaiming_uniform_(self.A, a=math.sqrt(5))
         # Section 4.1 says "random Gaussian for A", however
-        # Standard normal (std=1) causes gradient explosion: ||x @ A.T|| ~ sqrt(768),
+        # Standard normal (std=1) causes gradient explosion,
         # making the first B update ~14x too large and preventing learning. 
 
         self.rank = rank
