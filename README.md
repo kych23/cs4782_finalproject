@@ -14,7 +14,7 @@ We reproduce Table 2 of the paper: LoRA on RoBERTa-base accuracy versus full fin
 
 - `code/` — re-implementation source and training scripts
 - `data/` — dataset instructions (auto-downloaded via HuggingFace)
-- `results/` — per-run `results.json` logs
+- `results/` — per-run `results.json` logs, `plot_*.py` visualization scripts, and generated `.png` figures
 - `poster/`, `report/` — final poster and 2-page report PDFs
 - `public/` - static project assets (paper PDF and reference figures/tables)
 
