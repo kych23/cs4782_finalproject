@@ -4,7 +4,7 @@
   "rank": 8,
   "alpha": 8,
   "seed": 42,
-  "trainable_params": 887042,
+  "trainable_params": 294912,
   "total_params": 124942082,
   "best_val_acc": 0.9438,
   "best_epoch": 8,

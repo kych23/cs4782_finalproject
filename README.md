@@ -14,7 +14,7 @@ We reproduce Table 2 of the paper: LoRA on RoBERTa-base accuracy versus full fin
 
 - `code/` — re-implementation source and training scripts
 - `data/` — dataset instructions (auto-downloaded via HuggingFace)
-- `results/` — per-run `results.json` logs, `plot_*.py` visualization scripts, and generated `.png` figures
+- `results/` — per-run `results.json` logs; `results/graphs/scripts/` contains visualization scripts and `results/graphs/` contains generated `.png` figures
 - `poster/`, `report/` — final poster and 2-page report PDFs
 - `public/` - static project assets (paper PDF and reference figures/tables)
 
@@ -64,6 +64,7 @@ Our re-implementation confirms LoRA's core claim that low-rank adapters achieve 
 
 - Hu, E. J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, L., Wang, W., and Chen, W. (2021). _LoRA: Low-Rank Adaptation of Large Language Models_. arXiv:2106.09685.
 - PyTorch: https://docs.pytorch.org/docs/stable/index.html
+- GLUE Benchmark (HuggingFace Datasets): https://huggingface.co/datasets/nyu-mll/glue
 
 ## 9) Acknowledgements
 
