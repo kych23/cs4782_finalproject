@@ -54,10 +54,11 @@ Our RoBERTa-base results on the three reproduced tasks are:
 - **QNLI**: LoRA `92.81` vs paper LoRA `93.3`; Full FT `92.90` vs paper Full FT `92.8`
 - **RTE**: LoRA `80.14` vs paper LoRA `86.6`; Full FT `79.42` vs paper Full FT `78.7`
 
-LoRA remains much more parameter-efficient in our runs: `887,042` trainable parameters vs `124,647,170` for full fine-tuning (~`0.71%` as many trainable parameters).
+LoRA remains much more parameter-efficient in our runs: `294,912` trainable parameters vs `124,647,170` for full fine-tuning (~`0.24%` as many trainable parameters).
 
 ## 7) Conclusion
 
+1
 Our re-implementation confirms LoRA's core claim that low-rank adapters achieve accuracy equal to or better than fine-tuning quality at a fraction of the parameter and memory cost.
 
 ## 8) References
