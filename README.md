@@ -58,14 +58,15 @@ LoRA remains much more parameter-efficient in our runs: `294,912` trainable para
 
 ## 7) Conclusion
 
-1
-Our re-implementation confirms LoRA's core claim that low-rank adapters achieve accuracy equal to or better than fine-tuning quality at a fraction of the parameter and memory cost.
+Our re-implementation confirms LoRA's core claim that low-rank adapters achieve accuracy equal to or better than fine-tuning quality at a fraction of the parameter and memory cost. We learned that implementation details matter, especially correct Q/V adapter injection and freezing behavior, benchmark gaps can come from training budget and hyperparameter sensitivity rather than a failure of the method, and reproducible experiment structure (fixed seeds and clear scripts) is essential for trustworthy re-implementation results.
 
 ## 8) References
 
 - Hu, E. J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, L., Wang, W., and Chen, W. (2021). _LoRA: Low-Rank Adaptation of Large Language Models_. arXiv:2106.09685.
+- Wang, A., Singh, A., Michael, J., Hill, F., Levy, O., & Bowman, S. R. (2019). GLUE: A Multi-Task Benchmark and Analysis Platform for Natural Language Understanding. ICLR.
 - PyTorch: https://docs.pytorch.org/docs/stable/index.html
 - GLUE Benchmark (HuggingFace Datasets): https://huggingface.co/datasets/nyu-mll/glue
+- HuggingFace Transformers: https://huggingface.co/FacebookAI/roberta-base
 
 ## 9) Acknowledgements
 
