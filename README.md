@@ -27,7 +27,7 @@ We fine-tune pretrained `roberta-base` using a custom LoRA implementation that i
 ```bash
 python -m venv venv
 source venv/bin/activate
-pip install -r code/requirements.txt
+pip install -r requirements.txt
 
 # Example training run scripts (LoRA or full fine-tuning)
 python code/run_experiment.py --task sst2 --mode lora --rank 8 --seed 42
@@ -45,6 +45,8 @@ python code/run_experiment.py --task rte --mode full --seed 42
   - default for LoRA: `results/{task}_lora_r{rank}`
   - default for full fine-tuning: `results/{task}_full`
 - `--verify` (optional flag): run LoRA sanity checks before training
+
+Computational resources used: NVIDIA L4 GPU for RTE and NVIDIA A100 GPU for SST-2/QNLI. The code should run on other CUDA-capable GPUs as well, with expected differences in runtime.
 
 ## 6) Results / Insights
 
